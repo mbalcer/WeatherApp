@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.CurrentWeather;
 import weather.QueryCurrentWeather;
@@ -59,7 +60,6 @@ public class MainController {
     private void downloadData() {
         ObjectMapper mapper = new ObjectMapper();
         QueryCurrentWeather query = new QueryCurrentWeather();
-
         CurrentWeather currentWeather = null;
         try {
             currentWeather = mapper.readValue(query.makeQuery(), CurrentWeather.class);
@@ -72,8 +72,8 @@ public class MainController {
         pressure.setText("Pressure: " + String.valueOf(currentWeather.getMainParametrs().getPressure()) + " hPa");
         windSpeed.setText("Speed: " + currentWeather.getWind().getSpeed() + " m/s");
         windDirection.setText("Direction: " + currentWeather.getWind().getDeg() + "°");
-
-
+        String urlIcon = "/img/weather/"+currentWeather.getWeather().get(0).getIcon()+".png";
+        imgWeather.setImage(new Image(urlIcon));
     }
 
 }
