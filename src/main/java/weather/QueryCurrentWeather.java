@@ -1,16 +1,11 @@
 package weather;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.HashMap;
-import java.util.Map;
 
 public class QueryCurrentWeather {
     private final String API_KEY = "4b73e82c5827cb72b1fa6b02461cafd6";
@@ -48,17 +43,4 @@ public class QueryCurrentWeather {
         }
         return result.toString();
     }
-
-    public Map<String, Object> jsonToMap(String json) {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> map = new HashMap<String, Object>();
-        try {
-            map = mapper.readValue(json, new TypeReference<Map<String, Object>>(){});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return map;
-    }
-
 }
