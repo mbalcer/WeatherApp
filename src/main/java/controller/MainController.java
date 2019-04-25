@@ -3,13 +3,16 @@ package controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.CurrentWeather;
 import weather.QueryCurrentWeather;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainController {
 
@@ -43,9 +46,20 @@ public class MainController {
     @FXML
     private JFXButton btnClose;
 
+    private QueryCurrentWeather query;
+
     @FXML
     void changeCity() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("City name");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Enter the name of the city: ");
 
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            query.setLocation(result.get());
+            downloadData();
+        }
     }
 
     @FXML
@@ -54,12 +68,12 @@ public class MainController {
     }
 
     public void initialize() {
+        query = new QueryCurrentWeather();
         downloadData();
     }
 
     private void downloadData() {
         ObjectMapper mapper = new ObjectMapper();
-        QueryCurrentWeather query = new QueryCurrentWeather();
         CurrentWeather currentWeather = null;
         try {
             currentWeather = mapper.readValue(query.makeQuery(), CurrentWeather.class);
