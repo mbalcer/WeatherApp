@@ -1,5 +1,7 @@
 package weather;
 
+import javafx.scene.control.Alert;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,7 +41,11 @@ public class QueryCurrentWeather {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("There isn't such city");
+            alert.showAndWait();
         }
         return result.toString();
     }

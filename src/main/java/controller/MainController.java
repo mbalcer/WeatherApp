@@ -77,15 +77,25 @@ public class MainController {
         CurrentWeather currentWeather = null;
         try {
             currentWeather = mapper.readValue(query.makeQuery(), CurrentWeather.class);
+            setFieldInView(currentWeather);
         } catch (IOException e) {
-            e.printStackTrace(); // todo exception handling
+            System.out.println("Error during read");
         }
+    }
 
+    private void setFieldInView(CurrentWeather currentWeather) {
         cityName.setText(currentWeather.getCity());
         temperature.setText(String.valueOf(currentWeather.getMainParametrs().getTemperature()) + " °C");
         pressure.setText("Pressure: " + String.valueOf(currentWeather.getMainParametrs().getPressure()) + " hPa");
-        windSpeed.setText("Speed: " + currentWeather.getWind().getSpeed() + " m/s");
-        windDirection.setText("Direction: " + currentWeather.getWind().getDeg() + "°");
+        if (currentWeather.getWind().getDeg() == null)
+            windDirection.setText("");
+        else
+            windDirection.setText("Direction: " + currentWeather.getWind().getDeg() + "°");
+        if (currentWeather.getWind().getSpeed() == null)
+            windSpeed.setText("Speed: 0 m/s");
+        else
+            windSpeed.setText("Speed: " + currentWeather.getWind().getSpeed() + " m/s");
+
         String urlIcon = "/img/weather/"+currentWeather.getWeather().get(0).getIcon()+".png";
         imgWeather.setImage(new Image(urlIcon));
     }
