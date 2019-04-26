@@ -89,8 +89,10 @@ public class MainController {
         pressure.setText("Pressure: " + String.valueOf(currentWeather.getMainParametrs().getPressure()) + " hPa");
         if (currentWeather.getWind().getDeg() == null)
             windDirection.setText("");
-        else
-            windDirection.setText("Direction: " + currentWeather.getWind().getDeg() + "°");
+        else {
+            currentWeather.getWind().setDirection();
+            windDirection.setText("Direction: " + currentWeather.getWind().getDirection());
+        }
         if (currentWeather.getWind().getSpeed() == null)
             windSpeed.setText("Speed: 0 m/s");
         else
