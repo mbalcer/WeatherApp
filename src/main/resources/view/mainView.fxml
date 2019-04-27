@@ -9,6 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
+      <JFXButton layoutX="51.0" layoutY="126.0" prefHeight="4.0" prefWidth="7.0" text=" " />
       <Label fx:id="cityName" layoutX="25.0" layoutY="22.0" prefHeight="35.0" prefWidth="302.0" text="City name">
          <font>
             <Font size="24.0" />
@@ -19,20 +20,20 @@
             <Image url="@../img/weather/01d.png" />
          </image>
       </ImageView>
-      <Label fx:id="temperature" layoutX="116.0" layoutY="117.0" prefHeight="35.0" prefWidth="70.0" text="13.52 °C">
+      <Label fx:id="temperature" layoutX="116.0" layoutY="117.0" prefHeight="35.0" prefWidth="81.0" text="13.52 °C">
          <font>
-            <Font name="System Bold" size="16.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <ImageView fx:id="imgWind" fitHeight="35.0" fitWidth="35.0" layoutX="194.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgWind" fitHeight="35.0" fitWidth="35.0" layoutX="225.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/weather/wind.png" />
          </image>
       </ImageView>
-      <Label fx:id="windSpeed" layoutX="238.0" layoutY="91.0" text="Speed: 6.2 " />
-      <Label fx:id="windDirection" layoutX="238.0" layoutY="108.0" text="Direction: SE" />
-      <Label fx:id="pressure" layoutX="238.0" layoutY="144.0" text="Pressure: 1006 HPa" />
-      <ImageView fx:id="imgPressure" fitHeight="35.0" fitWidth="35.0" layoutX="194.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="windSpeed" layoutX="269.0" layoutY="91.0" text="Speed: 6.2 " />
+      <Label fx:id="windDirection" layoutX="269.0" layoutY="108.0" text="Direction: SE" />
+      <Label fx:id="pressure" layoutX="269.0" layoutY="144.0" text="Pressure: 1006 HPa" />
+      <ImageView fx:id="imgPressure" fitHeight="35.0" fitWidth="35.0" layoutX="225.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/weather/gauge.png" />
          </image>
@@ -66,6 +67,6 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="humidity" layoutX="238.0" layoutY="161.0" text="Humidity: 64 %" />
+      <Label fx:id="humidity" layoutX="269.0" layoutY="161.0" text="Humidity: 64 %" />
    </children>
 </AnchorPane>
