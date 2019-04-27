@@ -7,10 +7,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MainParametrs {
     private Double temperature;
     private Integer pressure;
+    private Integer humidity;
 
-    public MainParametrs(Double temperature, Integer pressure) {
+    public MainParametrs(Double temperature, Integer pressure, Integer humidity) {
         this.temperature = temperature;
         this.pressure = pressure;
+        this.humidity = humidity;
     }
 
     public MainParametrs() {
@@ -33,11 +35,20 @@ public class MainParametrs {
         this.pressure = pressure;
     }
 
+    public Integer getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(Integer humidity) {
+        this.humidity = humidity;
+    }
+
     @Override
     public String toString() {
         return "MainParametrs{" +
                 "temperature=" + temperature +
                 ", pressure=" + pressure +
+                ", humidity=" + humidity +
                 '}';
     }
 }
