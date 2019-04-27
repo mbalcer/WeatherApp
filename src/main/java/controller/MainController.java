@@ -20,6 +20,9 @@ public class MainController {
     private Label cityName;
 
     @FXML
+    private Label weatherDescription;
+
+    @FXML
     private ImageView imgWeather;
 
     @FXML
@@ -36,6 +39,9 @@ public class MainController {
 
     @FXML
     private Label pressure;
+
+    @FXML
+    private Label humidity;
 
     @FXML
     private ImageView imgPressure;
@@ -85,8 +91,10 @@ public class MainController {
 
     private void setFieldInView(CurrentWeather currentWeather) {
         cityName.setText(currentWeather.getCity());
-        temperature.setText(String.valueOf(currentWeather.getMainParametrs().getTemperature()) + " °C");
-        pressure.setText("Pressure: " + String.valueOf(currentWeather.getMainParametrs().getPressure()) + " hPa");
+        weatherDescription.setText(capitalize(currentWeather.getWeather().get(0).getDescription()));
+        temperature.setText(currentWeather.getMainParametrs().getTemperature() + " °C");
+        pressure.setText("Pressure: " + currentWeather.getMainParametrs().getPressure() + " hPa");
+        humidity.setText("Humidity: " + currentWeather.getMainParametrs().getHumidity() + "%");
         if (currentWeather.getWind().getDeg() == null)
             windDirection.setText("");
         else {
@@ -102,4 +110,7 @@ public class MainController {
         imgWeather.setImage(new Image(urlIcon));
     }
 
+    private static String capitalize(String str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
 }
