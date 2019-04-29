@@ -3,6 +3,7 @@ package model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Date;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -10,10 +11,10 @@ public class CurrentWeather {
     private List<Weather> weather;
     private MainParametrs mainParametrs;
     private Wind wind;
-    private String time;
+    private Date time;
     private String city;
 
-    public CurrentWeather(List<Weather> weather, MainParametrs mainParametrs, Wind wind, String time, String city) {
+    public CurrentWeather(List<Weather> weather, MainParametrs mainParametrs, Wind wind, Date time, String city) {
         this.weather = weather;
         this.mainParametrs = mainParametrs;
         this.wind = wind;
@@ -25,11 +26,11 @@ public class CurrentWeather {
     }
 
     @JsonProperty("dt")
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

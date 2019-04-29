@@ -12,6 +12,8 @@ import model.CurrentWeather;
 import weather.QueryCurrentWeather;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 public class MainController {
@@ -51,6 +53,9 @@ public class MainController {
 
     @FXML
     private JFXButton btnClose;
+
+    @FXML
+    private Label updateDate;
 
     private QueryCurrentWeather query;
 
@@ -95,6 +100,7 @@ public class MainController {
         temperature.setText(currentWeather.getMainParametrs().getTemperature() + " °C");
         pressure.setText("Pressure: " + currentWeather.getMainParametrs().getPressure() + " hPa");
         humidity.setText("Humidity: " + currentWeather.getMainParametrs().getHumidity() + "%");
+        updateDate.setText("Data on time: "+new SimpleDateFormat("dd.MM.yyyy HH:mm").format(new Date(currentWeather.getTime().getTime()*1000)));
         if (currentWeather.getWind().getDeg() == null)
             windDirection.setText("");
         else {
