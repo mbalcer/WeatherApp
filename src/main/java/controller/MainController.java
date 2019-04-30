@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.CurrentWeather;
 import utility.DataUpdate;
+import utility.WriteData;
 import weather.QueryCurrentWeather;
 
 import java.io.IOException;
@@ -71,6 +72,8 @@ public class MainController {
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
+            WriteData writeData = new WriteData();
+            writeData.writeLocation(result.get());
             query.setLocation(result.get());
             downloadData();
         }
