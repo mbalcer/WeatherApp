@@ -3,14 +3,13 @@ package controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.CurrentWeather;
 import utility.DataUpdate;
-import utility.WriteData;
+import utility.SaveLocation;
 import weather.QueryCurrentWeather;
 
 import java.io.IOException;
@@ -18,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainController {
 
@@ -72,9 +70,7 @@ public class MainController {
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
-            WriteData writeData = new WriteData();
-            writeData.writeLocation(result.get());
-            query.setLocation(result.get());
+            new SaveLocation().writeLocation(result.get());
             downloadData();
         }
     }
@@ -90,7 +86,7 @@ public class MainController {
     }
 
     public void downloadData() {
-        query = new QueryCurrentWeather(new WriteData().readLocation());
+        query = new QueryCurrentWeather(new SaveLocation().readLocation());
         ObjectMapper mapper = new ObjectMapper();
         CurrentWeather currentWeather = null;
         try {
