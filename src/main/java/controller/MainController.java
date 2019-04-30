@@ -85,12 +85,12 @@ public class MainController {
     }
 
     public void initialize() {
-        query = new QueryCurrentWeather();
         Timer timer = new Timer();
         timer.schedule(new DataUpdate(this), 0, 1000*60);
     }
 
     public void downloadData() {
+        query = new QueryCurrentWeather(new WriteData().readLocation());
         ObjectMapper mapper = new ObjectMapper();
         CurrentWeather currentWeather = null;
         try {

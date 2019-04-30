@@ -18,6 +18,10 @@ public class QueryCurrentWeather {
         this.location = "Warszawa";
     }
 
+    public QueryCurrentWeather(String location) {
+        this.location = location;
+    }
+
     public void setLocation(String location) {
         this.location = location;
     }

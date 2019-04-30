@@ -24,5 +24,26 @@ public class WriteData {
         }
     }
 
-    
+    public String readLocation() {
+        BufferedReader reader = null;
+        String location = null;
+        try {
+            reader = new BufferedReader(new FileReader(FILE_PATH));
+            location = reader.readLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader!=null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return location;
+    }
 }
