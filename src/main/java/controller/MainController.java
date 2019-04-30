@@ -9,12 +9,15 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.CurrentWeather;
+import utility.DataUpdate;
 import weather.QueryCurrentWeather;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainController {
 
@@ -80,10 +83,11 @@ public class MainController {
 
     public void initialize() {
         query = new QueryCurrentWeather();
-        downloadData();
+        Timer timer = new Timer();
+        timer.schedule(new DataUpdate(this), 0, 1000*60);
     }
 
-    private void downloadData() {
+    public void downloadData() {
         ObjectMapper mapper = new ObjectMapper();
         CurrentWeather currentWeather = null;
         try {
